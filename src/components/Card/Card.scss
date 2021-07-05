@@ -6,46 +6,77 @@
     background-color: $light-grayish-cyan-primary;
     padding: 7rem;
 
+    @media only screen and (max-width: 62.5em) {
+        padding: 5rem 2rem 2rem 2rem;
+    }
+
     &__container {
+        position: relative;
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 2.5rem;
-        position: relative;
         background-color: $color-white;
-        max-width: 100rem;
+        max-width: 120rem;
         margin: 0 auto 2rem auto;
         z-index: 10;
         box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.1);
         border-left: 4px solid $dark-grayish-cyan;
         border-radius: 3px;
+
+        @media only screen and (max-width: 62.5em) {
+            flex-direction: column;
+            align-items: unset;
+            margin-bottom: 6rem;
+        }
     }
 
     &__logo {
         width: 100px;
         height: 100px;
+
+        @media only screen and (max-width: 62.5em) {
+            position: absolute;
+            top: 0;
+            left: 30px;
+            width: 60px;
+            height: 60px;
+            transform: translateY(-50%);
+        }
+        
     }
 
     &__info {
         display: flex;
         justify-content: center;
         grid-gap: 2.5rem;
+
+        @media only screen and (max-width: 62.5em) {
+            justify-content: unset;
+        }
     }
 
     &__left-section {
         display: flex;
         flex-direction: column;
         justify-content: space-around;
+
+        @media only screen and (max-width: 62.5em) {
+            grid-gap: 1.5rem;
+            margin-top: 1rem;
+        }
     }
 
     &__details {
         display: flex;
         align-items: center;
+        grid-gap: 1rem;
+        flex-wrap: wrap;
+    
     }
 
 
     &__company-name {
-        margin-right: 1rem;
         font-size: 1.2rem;
         font-weight: 700;
         color: $dark-grayish-cyan;
@@ -72,7 +103,7 @@
         
         &--featured{
             display: none;
-            
+
             &.active {
                 display: block;
                 padding: .9rem;
@@ -87,10 +118,16 @@
     &__position {
         font-size: 1.7rem;
         color: $very-dark-grayish-cyan;
+        cursor: pointer;
+
+        &:hover {
+            color: $desaturated-dark-cyan;
+        }
     }
     
     &__content {
         display: flex;
+        flex-wrap: wrap;
         justify-content: space-between;
         font-size: 1.2rem;
         color: $desaturated-dark-cyan;
@@ -123,8 +160,22 @@
     }
 
     &__categories {
+        margin-top: 3.5rem;
         display: flex;
+        flex-wrap: wrap;
         grid-gap: 1rem;
+
+        &::before {
+            content: "";
+            display: block;
+            width: 100%;
+            border: .2px solid $desaturated-dark-cyan;
+            transform: translateY(-13px);
+
+            @media only screen and (min-width: 62.5em) {
+                display: none;
+            }
+        }
     }
 
     &__category {
@@ -133,5 +184,13 @@
         padding: 1rem;
         font-weight: 700;
         font-size: 1.2rem;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $desaturated-dark-cyan;
+            color: $color-white;
+        }
+
+      
     }
 }

@@ -4,6 +4,16 @@ import data from "../../data.json";
 
 import "./Card.scss";
 const Card = () => {
+    let selectedCatrgories = [];
+
+
+    const clickHandler = (categories) => {
+        selectedCatrgories.push(categories);
+
+        console.log(selectedCatrgories)
+    }   
+
+
   return (
     <div className="card">
       {data.map((item) => (
@@ -36,13 +46,13 @@ const Card = () => {
 
           <div className="card__categories">
             {item.languages.map((language) => (
-              <span className="card__category">{language}</span>
+              <span className="card__category" onClick={() => clickHandler(language)}>{language}</span>
             ))}
             {item.tools.map((tool) => (
-              <span className="card__category">{tool}</span>
+              <span className="card__category" onClick={() => clickHandler(tool)}>{tool}</span>
             ))}
-            <span className="card__category">{item.role}</span>
-            <span className="card__category">{item.level}</span>
+            <span className="card__category" onClick={() => clickHandler(item.role)}>{item.role}</span>
+            <span className="card__category" onClick={() => clickHandler(item.level)}>{item.level}</span>
           </div>
         </div>
       ))}
