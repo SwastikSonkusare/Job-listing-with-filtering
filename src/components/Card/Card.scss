@@ -1,0 +1,26 @@
+@import "../../styles/variables";
+
+
+.card {
+    
+    background-color: $light-grayish-cyan-primary;
+    padding: 7rem;
+
+    &__container {
+        padding: 2.5rem;
+        position: relative;
+        background-color: $color-white;
+        max-width: 80rem;
+        margin: 0 auto 2rem auto;
+        z-index: 10;
+        box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.1);
+        border-left: 4px solid $dark-grayish-cyan;
+        border-top-left-radius: 3px;
+        border-bottom-left-radius: 3px;
+    }
+
+    &__logo {
+        width: 78px;
+        height: 78px;
+    }
+}
