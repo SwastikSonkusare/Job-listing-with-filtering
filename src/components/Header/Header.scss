@@ -1,0 +1,9 @@
+@import "../../styles/variables";
+
+.header {
+    background-color: $dark-grayish-cyan;
+    background-image: url(../../assets/images/bg-header-desktop.svg);
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    height: 25vh;
+}
