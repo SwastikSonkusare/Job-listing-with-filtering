@@ -1,62 +1,75 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 import data from "../../data.json";
+import JobBoard from "../JobBoard/JobBoard";
 
 import "./Card.scss";
 const Card = () => {
-    let selectedCatrgories = [];
+  const [jobs, setJobs] = useState([]);
+  const [filters, setFilters] = useState([]);
+
+  const filterFunc = ({ role, level, tools, languages }) => {
+    if (filters.length === 0) {
+      return true;
+    }
+
+    const tags = [role, level];
+
+    if (tools) {
+      tags.push(...tools);
+    }
+
+    if (languages) {
+      tags.push(...languages);
+    }
+
+    return filters.every((filter) => tags.includes(filter));
+  };
+
+  const handleTagClick = (tag) => {
+    if (filters.includes(tag)) return;
+
+    setFilters([...filters, tag]);
+  };
+
+  const handleFilterClick = (passedFilter) => {
+    setFilters(filters.filter((f) => f !== passedFilter));
+  };
 
 
-    const clickHandler = (categories) => {
-        selectedCatrgories.push(categories);
+  const handleClearClick = () =>{
+    setFilters([])
+  }
 
-        console.log(selectedCatrgories)
-    }   
+  const filteredJobs = jobs.filter(filterFunc);
 
+  useEffect(() => {
+    setJobs(data);
+  }, []);
 
   return (
-    <div className="card">
-      {data.map((item) => (
-        <div className="card__container">
-          <div className="card__info">
-            <img className="card__logo" src={item.logo} alt={item.logo}></img>
-
-            <div className="card__left-section">
-              <div className="card__details">
-                <small className="card__company-name">{item.company}</small>
-                <div className="card__job">
-                  <span className={item.new ? "card__job--new active" : "card__job--new"}>
-                    {item.new ? "new!" : ""}
-                  </span>
-                  <span className={item.featured ? "card__job--featured active" : "card__job--featured"}>
-                    {item.featured ? "featured" : ""}
-                  </span>
-                </div>
-              </div>
-
-              <h1 className="card__position">{item.position}</h1>
-
-              <div className="card__content">
-                <small className="card__posted-at">{item.postedAt}</small>
-                <small className="card__contract">{item.contract}</small>
-                <small className="card__location">{item.location}</small>
-              </div>
+    <>
+      <div className="card">
+        {filters.length > 0 && (
+          <div className="filter__container">
+            <div className="filter__box">
+            {filters.map((filter) => (
+              <span onClick={() => handleFilterClick(filter)}>
+                <span className="filter__card">{filter}</span>
+                <span className="filter__cancel">x</span>
+              </span>
+            ))}
             </div>
-          </div>
 
-          <div className="card__categories">
-            {item.languages.map((language) => (
-              <span className="card__category" onClick={() => clickHandler(language)}>{language}</span>
-            ))}
-            {item.tools.map((tool) => (
-              <span className="card__category" onClick={() => clickHandler(tool)}>{tool}</span>
-            ))}
-            <span className="card__category" onClick={() => clickHandler(item.role)}>{item.role}</span>
-            <span className="card__category" onClick={() => clickHandler(item.level)}>{item.level}</span>
+            <button className="filter__clear" onClick={handleClearClick}>Clear</button>
           </div>
-        </div>
-      ))}
-    </div>
+        )}
+
+        {filteredJobs.map((job) => (
+          <JobBoard job={job} key={job.id} handleTagClick={handleTagClick} />
+        ))}
+      </div>
+    </>
   );
 };
 

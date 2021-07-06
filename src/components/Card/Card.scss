@@ -2,9 +2,8 @@
 
 
 .card {
-    
     background-color: $light-grayish-cyan-primary;
-    padding: 7rem;
+    padding: 0 7rem 7rem 7rem;
 
     @media only screen and (max-width: 62.5em) {
         padding: 5rem 2rem 2rem 2rem;
@@ -13,6 +12,7 @@
     &__container {
         position: relative;
         display: flex;
+        
         justify-content: space-between;
         align-items: center;
         padding: 2.5rem;
@@ -91,28 +91,19 @@
         font-size: 1.1rem;
         
         &--new {
-            display: none;
             
-            &.active {
-                display: block;
-                padding: .9rem;
-                border-radius: 30px;
-                background-color: $desaturated-dark-cyan;
-            }
+            display: block;
+            padding: .9rem;
+            border-radius: 30px;
+            background-color: $desaturated-dark-cyan;
         }
         
         &--featured{
-            display: none;
-
-            &.active {
-                display: block;
-                padding: .9rem;
-                background-color: $very-dark-grayish-cyan;
-                border-radius: 30px;
-            }
+            display: block;
+            padding: .9rem;
+            background-color: $very-dark-grayish-cyan;
+            border-radius: 30px;
         }
-        
-        
     }
 
     &__position {
@@ -192,5 +183,59 @@
         }
 
       
+    }
+}
+
+
+.filter {
+    &__container {
+        position: relative;
+        display: flex;
+        grid-gap: 1rem;
+        padding: 3rem;
+        background-color: $color-white;
+        max-width: 120rem;
+        margin: 0 auto;
+        z-index: 10;
+        box-shadow: 0 2rem 5rem rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+        transform: translateY(-50%);
+    }
+
+    &__box {
+        display: flex;
+        flex-wrap: wrap;
+        grid-row-gap: 3rem;
+    }
+
+    &__card {
+        background-color: $light-grayish-cyan-primary;
+        color: $desaturated-dark-cyan;
+        padding: 1rem;
+        font-weight: 700;
+        font-size: 1.3rem;
+    }
+    
+    
+    &__cancel {
+        background-color: $desaturated-dark-cyan;
+        padding: 1rem;
+        color: $light-grayish-cyan-primary;
+        font-size: 1.3rem;
+        cursor: pointer;
+        font-weight: 700;
+        
+        &:hover {
+            background-color: $very-dark-grayish-cyan;
+        }
+    }
+
+    &__clear {
+        color: $desaturated-dark-cyan;
+        text-decoration: underline;
+        border: none;
+        background-color: unset;
+        font-weight: 700;
+        margin-left: auto;
     }
 }
