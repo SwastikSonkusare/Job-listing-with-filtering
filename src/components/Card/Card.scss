@@ -205,6 +205,7 @@
     &__box {
         display: flex;
         flex-wrap: wrap;
+        grid-gap: 1.5rem;
         grid-row-gap: 3rem;
     }
 
