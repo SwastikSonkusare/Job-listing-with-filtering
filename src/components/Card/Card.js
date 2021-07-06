@@ -23,7 +23,10 @@ const Card = () => {
       tags.push(...languages);
     }
 
+
+
     return filters.every((filter) => tags.includes(filter));
+
   };
 
   const handleTagClick = (tag) => {

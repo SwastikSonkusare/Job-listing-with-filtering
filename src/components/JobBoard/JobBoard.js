@@ -58,11 +58,9 @@ const JobBoard = ({
 
           <h1 className="card__position">{position}</h1>
 
-          <div className="card__content">
-            <small className="card__posted-at">{postedAt}</small>
-            <small className="card__contract">{contract}</small>
-            <small className="card__location">{location}</small>
-          </div>
+          <p className="card__content">
+            {postedAt} &middot; {contract} &middot; {location}
+          </p>
         </div>
       </div>
 
